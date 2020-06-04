@@ -1,9 +1,10 @@
 const bodyParser = require('body-parser');
 const CORS = require('./middlewares/CORS');
-const errorHandler = require('./middlewares/error-handler');
-
 const database = require('./config/database');
+const errorHandler = require('./middlewares/error-handler');
 const authRoutes = require('./routes/auth');
+
+const routes = [authRoutes];
 
 class Server {
   constructor(express) {
@@ -21,7 +22,7 @@ class Server {
   }
 
   setRoutes() {
-    this.app.use(authRoutes);
+    routes.forEach((route) => this.app.use(route));
     this.app.use(errorHandler);
   }
 
