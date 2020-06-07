@@ -7,6 +7,6 @@ server.initDatabase()
   .then(() => {
     server.setMiddlewares();
     server.setRoutes();
-    server.run();
+    server.run(process.env.SERVER_PORT || 5000);
   })
   .catch((err) => console.log('error: ', err));
